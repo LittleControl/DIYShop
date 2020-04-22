@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <HeadTop title="第二平行宇宙银河系地球村">
+    <HeadTop :title="address">
       <span class="header_search" slot="left">
-        <i class="iconfont icon-sousuo"></i>
+        <i class="iconfont icon-sousuo" />
       </span>
       <router-link to="/login" class="header_login" slot="right">
         <span class="header_login_text">登录|注册</span>
@@ -112,12 +112,12 @@
             </a>
           </div>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination" />
       </div>
     </nav>
     <div class="home_shop_list">
       <div class="shop_header">
-        <i class="iconfont icon-xuanxiang"></i>
+        <i class="iconfont icon-xuanxiang" />
         <span class="shop_header_title">为你推荐</span>
         <ShopList />
       </div>
@@ -126,13 +126,15 @@
 </template>
 
 <script>
-import HeadTop from "../components/HeadTop";
 import Swiper from "swiper";
+import HeadTop from "../components/HeadTop";
 import "swiper/css/swiper.min.css";
 import ShopList from "../components/ShopList";
+import { mapState } from "vuex";
 
 export default {
   mounted() {
+    this.$store.dispatch("getAddress");
     new Swiper(".swiper-container", {
       loop: true,
       pagination: {
@@ -145,6 +147,9 @@ export default {
   components: {
     HeadTop,
     ShopList
+  },
+  computed: {
+    ...mapState(["address"])
   }
 };
 </script>
@@ -231,4 +236,5 @@ export default {
       }
     }
   }
-}</style>
+}
+</style>
