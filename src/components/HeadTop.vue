@@ -1,10 +1,10 @@
 <template>
   <div class="header">
-    <slot name="left"></slot>
+    <slot name="left" />
     <span class="header_title">
-      <span class="header_title_text ellipsis">{{title}}</span>
+      <span class="header_title_text ellipsis">{{ title }}</span>
     </span>
-    <slot name="right"></slot>
+    <slot name="right" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 
 <style scoped lang="stylus">
 .header {
-  background-color: #02a774;
+  background-color: #189EFF;
   position: fixed;
   z-index: 100;
   left: 0;

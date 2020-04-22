@@ -1,6 +1,9 @@
-import { GET_ADDRESS } from './mutation-types'
+import {
+    GET_ADDRESS,
+    GET_BANNER,
+} from './mutation-types'
 
-import { reqAddress } from '../api/index'
+import { reqAddress, reqBanner } from '../api/index'
 
 export default {
 
@@ -13,6 +16,11 @@ export default {
         if (addr.address !== '') {
             commit(GET_ADDRESS, address)
         }
-
+    },
+    async getBanner({ commit }) {
+        let banner = await reqBanner();
+        console.log(banner)
+        console.log(typeof banner)
+        commit(GET_BANNER, banner)
     }
 }
