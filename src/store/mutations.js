@@ -1,14 +1,14 @@
 import {
     GET_ADDRESS,
-    GET_BANNER,
+    GET_BANNERS,
 } from './mutation-types'
 
 export default {
     [GET_ADDRESS](state, address) {
         state.address = address
     },
-    [GET_BANNER](state, banner) {
-        state.banner = banner
+    [GET_BANNERS](state, banners) {
+        state.banners = banners
     }
 
 }

@@ -1,6 +1,6 @@
 export default {
     address: '',
-    banner: [
+    banners: [
         {
             url: '/img/banner/1.jpg',
             target: ''
