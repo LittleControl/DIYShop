@@ -11,9 +11,9 @@
     <nav class="home_nav">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item, index) in banner" :key="index">
+          <div class="swiper-slide" v-for="(banner, index) in banners" :key="index">
             <div class="banner">
-              <img class="banner_item" :src="item.url" alt="Banner1" />
+              <img class="banner_item" :src="banner.url" alt="Banner1" />
             </div>
           </div>
         </div>
@@ -40,17 +40,17 @@ import { mapState } from "vuex";
 export default {
   mounted() {
     this.$store.dispatch("getAddress");
-    this.$store.dispatch("getBanner");
+    this.$store.dispatch("getBanners");
   },
   components: {
     HeadTop,
     ShopList
   },
   computed: {
-    ...mapState(["address", "banner"])
+    ...mapState(["address", "banners"])
   },
   watch: {
-    banner() {
+    banners() {
       this.$nextTick(() => {
         new Swiper(".swiper-container", {
           loop: true,
