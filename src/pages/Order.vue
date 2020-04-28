@@ -1,6 +1,6 @@
 <template>
   <div class="order">
-    <HeadTop title="订单列表"></HeadTop>
+    <HeadTop title="订单列表" />
     <section class="order_no_login">
       <img src="/img/order/person.png" />
       <h3>登录后查看外卖订单</h3>
@@ -45,7 +45,7 @@ export default {
 
     >button {
       display: inline-block;
-      background: #02a774;
+      background: #189eff;
       font-size: 14px;
       color: #fff;
       border: 0;
