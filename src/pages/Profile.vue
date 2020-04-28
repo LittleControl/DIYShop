@@ -1,22 +1,22 @@
 <template>
   <div class="profile">
-    <HeadTop title="我的信息"></HeadTop>
+    <HeadTop title="我的信息" />
     <section class="profile-number">
       <router-link to="/login" class="profile-link">
         <div class="profile_image">
-          <i class="iconfont icon-icon-test"></i>
+          <i class="iconfont icon-icon-test" />
         </div>
         <div class="user-info">
           <p class="user-info-top">登录/注册</p>
           <p>
             <span class="user-icon">
-              <i class="iconfont icon-shouji icon-mobile"></i>
+              <i class="iconfont icon-shouji icon-mobile" />
             </span>
             <span class="icon-mobile-number">暂无绑定手机号</span>
           </p>
         </div>
         <span class="arrow">
-          <i class="iconfont icon-jiantou"></i>
+          <i class="iconfont icon-jiantou" />
         </span>
       </router-link>
     </section>
@@ -45,34 +45,34 @@
     <section class="profile_my_order border-1px">
       <a href="javascript:" class="my_order">
         <span>
-          <i class="iconfont icon-xinbaniconshangchuan-"></i>
+          <i class="iconfont icon-xinbaniconshangchuan-" />
         </span>
         <div class="my_order_div">
           <span>我的订单</span>
           <span class="my_order_icon">
-            <i class="iconfont icon-jiantou"></i>
+            <i class="iconfont icon-jiantou" />
           </span>
         </div>
       </a>
       <a href="javascript:" class="my_order">
         <span>
-          <i class="iconfont icon-shangcheng"></i>
+          <i class="iconfont icon-shangcheng" />
         </span>
         <div class="my_order_div">
           <span>积分商城</span>
           <span class="my_order_icon">
-            <i class="iconfont icon-jiantou"></i>
+            <i class="iconfont icon-jiantou" />
           </span>
         </div>
       </a>
       <a href="javascript:" class="my_order">
         <span>
-          <i class="iconfont icon-filedicon_memberco"></i>
+          <i class="iconfont icon-filedicon_memberco" />
         </span>
         <div class="my_order_div">
           <span>硅谷外卖会员卡</span>
           <span class="my_order_icon">
-            <i class="iconfont icon-jiantou"></i>
+            <i class="iconfont icon-jiantou" />
           </span>
         </div>
       </a>
@@ -80,12 +80,12 @@
     <section class="profile_my_order border-1px">
       <a href="javascript:" class="my_order">
         <span>
-          <i class="iconfont icon-fuwuerji"></i>
+          <i class="iconfont icon-fuwuerji" />
         </span>
         <div class="my_order_div">
           <span>服务中心</span>
           <span class="my_order_icon">
-            <i class="iconfont icon-jiantou"></i>
+            <i class="iconfont icon-jiantou" />
           </span>
         </div>
       </a>
@@ -111,13 +111,14 @@ export default {
   overflow: hidden;
 
   .profile-number {
+    border-top: 0.1px groove;
     margin-top: 45.5px;
 
     .profile-link {
       clearFix();
       position: relative;
       display: block;
-      background: #02a774;
+      background: #189eff;
       padding: 20px 10px;
 
       .profile_image {

@@ -1,6 +1,6 @@
 <template>
   <div class="shop">
-    <HeadTop title="商家店铺"></HeadTop>
+    <HeadTop title="商家店铺" />
     <form class="search_form" action="#">
       <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input" />
       <input type="submit" name="submit" class="search_submit" />
@@ -49,10 +49,10 @@ export default {
       &.search_submit {
         float: right;
         width: 18%;
-        border: 4px solid #02a774;
+        border: 4px solid #189eff;
         font-size: 16px;
         color: #fff;
-        background-color: #02a774;
+        background-color: #189eff;
       }
     }
   }
