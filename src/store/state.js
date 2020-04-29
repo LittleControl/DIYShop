@@ -14,5 +14,18 @@ export default {
             target: ''
         },
     ],
+    shopList: [
+        {
+            img: '/img/shop/1.jpg',
+            name: 'Nothing to Do',
+            rating: 5,
+            medal: true,
+            support: {
+                quickShip: true,
+                noReason: true,
+                isGirl: true
+            }
+        }
+    ]
 
 }

@@ -110,7 +110,6 @@ export default {
 
   .home_shop_list {
     top-border-1px(#e4e4e4);
-    margin-top: 10px;
     background: #fff;
 
     .shop_header {
