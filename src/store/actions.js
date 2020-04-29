@@ -1,9 +1,14 @@
 import {
     GET_ADDRESS,
     GET_BANNERS,
+    GET_SHOPLIST,
 } from './mutation-types'
 
-import { reqAddress, reqBanners } from '../api/index'
+import {
+    reqAddress,
+    reqBanners,
+    reqShopList
+} from '../api/index'
 
 export default {
 
@@ -18,7 +23,11 @@ export default {
         }
     },
     async getBanners({ commit }) {
-        let banners = await reqBanners();
+        let banners = await reqBanners()
         commit(GET_BANNERS, banners)
+    },
+    async getShopList({ commit }) {
+        let shopList = await reqShopList()
+        commit(GET_SHOPLIST, shopList)
     }
 }
