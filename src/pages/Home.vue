@@ -10,11 +10,16 @@
     </HeadTop>
     <nav class="home_nav">
       <div class="swiper-container">
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper" v-if="banners.length > 0">
           <div class="swiper-slide" v-for="(banner, index) in banners" :key="index">
             <div class="banner">
               <img class="banner_item" :src="banner.url" alt="Banner1" />
             </div>
+          </div>
+        </div>
+        <div v-else>
+          <div class="banner">
+            <img class="banner_item" src="/img/banner/init_banner.svg" alt="init" />
           </div>
         </div>
         <div class="swiper-pagination" />
