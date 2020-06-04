@@ -17,10 +17,7 @@
             </div>
             <div class="shop_rating_order">
               <div class="shop_rating_order_left">
-                <div class="star star-36">
-                  <span class="star-item on" v-for="item in shop.rating" :key="item" />
-                  <span class="star-item off" v-for="item in 5 - shop.rating" :key="item + 5" />
-                </div>
+                <Star :rating="shop.rating" :size="36" />
                 <div class="rating_section">{{shop.rating}} 分</div>
                 <div class="order_section">月售出{{shop.count}}单</div>
               </div>
@@ -39,12 +36,16 @@
 
 <script>
 import { mapState } from "vuex";
+import Star from "./Star";
 export default {
   mounted() {
     this.$store.dispatch("getShopList");
   },
   computed: {
     ...mapState(["shopList"])
+  },
+  components: {
+    Star
   }
 };
 </script>
@@ -147,91 +148,6 @@ export default {
             .shop_rating_order_left {
               float: left;
               color: #ff9a0d;
-
-              .star { // 2x图 3x图
-                float: left;
-                font-size: 0;
-
-                .star-item {
-                  display: inline-block;
-                  background-repeat: no-repeat;
-                }
-
-                &.star-48 {
-                  .star-item {
-                    width: 20px;
-                    height: 20px;
-                    margin-right: 22px;
-                    background-size: 20px 20px;
-
-                    &:last-child {
-                      margin-right: 0;
-                    }
-
-                    &.on {
-                      bg-image('/img/stars/star48_on');
-                    }
-
-                    &.half {
-                      bg-image('/img/stars/star48_half');
-                    }
-
-                    &.off {
-                      bg-image('/img/stars/star48_off');
-                    }
-                  }
-                }
-
-                &.star-36 {
-                  .star-item {
-                    width: 15px;
-                    height: 15px;
-                    margin-right: 6px;
-                    background-size: 15px 15px;
-
-                    &:last-child {
-                      margin-right: 0;
-                    }
-
-                    &.on {
-                      bg-image('/img/stars/star36_on');
-                    }
-
-                    &.half {
-                      bg-image('/img/stars/star36_half');
-                    }
-
-                    &.off {
-                      bg-image('/img/stars/star36_off');
-                    }
-                  }
-                }
-
-                &.star-24 {
-                  .star-item {
-                    width: 10px;
-                    height: 10px;
-                    margin-right: 3px;
-                    background-size: 10px 10px;
-
-                    &:last-child {
-                      margin-right: 0;
-                    }
-
-                    &.on {
-                      bg-image('/img/stars/star24_on');
-                    }
-
-                    &.half {
-                      bg-image('/img/stars/star24_half');
-                    }
-
-                    &.off {
-                      bg-image('/img/stars/star24_off');
-                    }
-                  }
-                }
-              }
 
               .rating_section {
                 float: left;
