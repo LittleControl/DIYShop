@@ -2,15 +2,15 @@
   <div class="loginContainer">
     <div class="loginInner">
       <div class="login_header">
-        <h2 class="login_logo">硅谷外卖</h2>
+        <h2 class="login_logo">DIYShop</h2>
         <div class="login_header_title">
-          <a href="javascript:;" class="on">短信登录</a>
-          <a href="javascript:;">密码登录</a>
+          <a href="javascript:;" :class="{on: loginWay}" @click="loginWay = true">短信登录</a>
+          <a href="javascript:;" :class="{on: !loginWay}" @click="loginWay = false">密码登录</a>
         </div>
       </div>
       <div class="login_content">
-        <form>
-          <div class="on">
+        <form @click.prevent="login">
+          <div :class="{on: loginWay}">
             <section class="login_message">
               <input type="tel" maxlength="11" placeholder="手机号" />
               <button disabled="disabled" class="get_verification">获取验证码</button>
@@ -19,26 +19,45 @@
               <input type="tel" maxlength="8" placeholder="验证码" />
             </section>
             <section class="login_hint">
-              温馨提示：未注册硅谷外卖帐号的手机号，登录时将自动注册，且代表已同意
+              温馨提示：未注册帐号的手机号，登录时将自动注册，且代表已同意
               <a href="javascript:;">《用户服务协议》</a>
             </section>
           </div>
-          <div>
+          <div :class="{on: !loginWay}">
             <section>
               <section class="login_message">
-                <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名" />
+                <input type="email" placeholder="邮箱" v-model="email" />
               </section>
               <section class="login_verification">
-                <input type="tel" maxlength="8" placeholder="密码" />
-                <div class="switch_button off">
-                  <div class="switch_circle"></div>
-                  <span class="switch_text">...</span>
+                <input
+                  type="password"
+                  maxlength="16"
+                  minlength="8"
+                  placeholder="密码"
+                  v-model="passwd"
+                  v-if="!showPwd"
+                />
+                <input
+                  type="text"
+                  maxlength="16"
+                  minlength="8"
+                  placeholder="密码"
+                  v-model="passwd"
+                  v-else
+                />
+                <div
+                  class="switch_button"
+                  :class="showPwd ? 'on' : 'off'"
+                  @click="showPwd = !showPwd"
+                >
+                  <div class="switch_circle" :class="{right: showPwd}"></div>
+                  <span class="switch_text">abc</span>
                 </div>
               </section>
-              <section class="login_message">
+              <!-- <section class="login_message">
                 <input type="text" maxlength="11" placeholder="验证码" />
                 <img class="get_verification" src="/img/captcha.svg" alt="captcha" />
-              </section>
+              </section>-->
             </section>
           </div>
           <button class="login_submit">登录</button>
@@ -53,7 +72,24 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      loginWay: true, //true for message, false for passwd
+      showPwd: false,
+      email: "",
+      passwd: ""
+    };
+  },
+  methods: {
+    login() {
+      let reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+      if (reg.test(this.email)) {
+      } else {
+      }
+    }
+  }
+};
 </script>
 
 <style scoped lang="stylus">
@@ -71,7 +107,7 @@ export default {};
       .login_logo {
         font-size: 40px;
         font-weight: bold;
-        color: #02a774;
+        color: #189eff;
         text-align: center;
       }
 
@@ -89,9 +125,9 @@ export default {};
           }
 
           &.on {
-            color: #02a774;
+            color: #189eff;
             font-weight: 700;
-            border-bottom: 2px solid #02a774;
+            border-bottom: 2px solid #189eff;
           }
         }
       }
@@ -172,7 +208,7 @@ export default {};
               }
 
               &.on {
-                background: #02a774;
+                background: #189eff;
               }
 
               >.switch_circle {
@@ -187,6 +223,10 @@ export default {};
                 background: #fff;
                 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
                 transition: transform 0.3s;
+
+                &.right {
+                  transform: translateX(30px);
+                }
               }
             }
           }
@@ -198,7 +238,7 @@ export default {};
             line-height: 20px;
 
             >a {
-              color: #02a774;
+              color: #189eff;
             }
           }
         }
@@ -209,7 +249,7 @@ export default {};
           height: 42px;
           margin-top: 30px;
           border-radius: 4px;
-          background: #4cd96f;
+          background: #189eff;
           color: #fff;
           text-align: center;
           font-size: 16px;
