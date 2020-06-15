@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="login_content">
-        <form @click.prevent="login">
+        <form>
           <div :class="{on: loginWay}">
             <section class="login_message">
               <input type="tel" maxlength="11" placeholder="手机号" />
@@ -60,34 +60,47 @@
               </section>-->
             </section>
           </div>
-          <button class="login_submit">登录</button>
+          <button class="login_submit" @click.prevent="login">登录</button>
         </form>
-        <a href="javascript:;" class="about_us">关于我们</a>
+        <a href="https://github.com/LittleControl/DIYShop" class="about_us">关于我们</a>
       </div>
       <a href="javascript:" class="go_back" @click="$router.back()">
         <i class="iconfont icon-jiantou4"></i>
       </a>
     </div>
+    <AlterTip :alertText="alertText" @closeTip="closeTip" v-show="showAlert" />
   </div>
 </template>
 
 <script>
+import AlterTip from "../components/AlterTip";
 export default {
   data() {
     return {
       loginWay: true, //true for message, false for passwd
       showPwd: false,
       email: "",
-      passwd: ""
+      passwd: "",
+      showAlert: false,
+      alertText: ""
     };
   },
   methods: {
     login() {
       let reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
       if (reg.test(this.email)) {
+        //send a post request(login)
       } else {
+        this.alertText = "请输入有效的邮箱!";
+        this.showAlert = true;
       }
+    },
+    closeTip() {
+      this.showAlert = false;
     }
+  },
+  components: {
+    AlterTip
   }
 };
 </script>
