@@ -1,5 +1,6 @@
 export default {
     address: '',
     banners: [],
-    shopList: []
+    shopList: [],
+    userInfo: {}
 }
