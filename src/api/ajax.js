@@ -1,5 +1,5 @@
 import axios from 'axios'
-export default function ajax(url, data = {}, type = 'GET') {
+export default function ajax(url, data = {}, type = 'GET', _csrf = '') {
 
     return new Promise(function (resolve, reject) {
         let promise = null
@@ -14,7 +14,11 @@ export default function ajax(url, data = {}, type = 'GET') {
             }
             promise = axios.get(url)
         } else {
-            promise = axios.post(url, data)
+            promise = axios.post(url, data, {
+                headers: {
+                    _csrf
+                }
+            })
         }
         promise.then(function (response) {
             resolve(response.data)

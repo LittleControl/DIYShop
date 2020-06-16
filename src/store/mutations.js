@@ -2,6 +2,7 @@ import {
     GET_ADDRESS,
     GET_BANNERS,
     GET_SHOPLIST,
+    POST_USERINFO,
 } from './mutation-types'
 
 export default {
@@ -13,6 +14,9 @@ export default {
     },
     [GET_SHOPLIST](state, shopList) {
         state.shopList = shopList
+    },
+    [POST_USERINFO](state, userInfo) {
+        state.userInfo = userInfo
     }
 
 }

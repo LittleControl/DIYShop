@@ -2,12 +2,14 @@ import {
     GET_ADDRESS,
     GET_BANNERS,
     GET_SHOPLIST,
+    POST_USERINFO,
 } from './mutation-types'
 
 import {
     reqAddress,
     reqBanners,
-    reqShopList
+    reqShopList,
+    reqUserInfo
 } from '../api/index'
 
 export default {
@@ -29,5 +31,10 @@ export default {
     async getShopList({ commit }) {
         let shopList = await reqShopList()
         commit(GET_SHOPLIST, shopList)
+    },
+    async postUserInfo({ commit }, { email, password, _csrf }) {
+        let userInfo = await reqUserInfo({ email, password, _csrf })
+        console.log(userInfo)
+        commit(POST_USERINFO, userInfo)
     }
 }

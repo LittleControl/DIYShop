@@ -34,7 +34,7 @@
                   maxlength="16"
                   minlength="8"
                   placeholder="密码"
-                  v-model="passwd"
+                  v-model="password"
                   v-if="!showPwd"
                 />
                 <input
@@ -42,7 +42,7 @@
                   maxlength="16"
                   minlength="8"
                   placeholder="密码"
-                  v-model="passwd"
+                  v-model="password"
                   v-else
                 />
                 <div
@@ -74,13 +74,15 @@
 
 <script>
 import AlterTip from "../components/AlterTip";
+import Cookies from "js-cookie";
+
 export default {
   data() {
     return {
       loginWay: true, //true for message, false for passwd
       showPwd: false,
       email: "",
-      passwd: "",
+      password: "",
       showAlert: false,
       alertText: ""
     };
@@ -89,7 +91,15 @@ export default {
     login() {
       let reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
       if (reg.test(this.email)) {
-        //send a post request(login)
+        let _csrf = Cookies.get("csrfToken");
+        const { email, password } = this;
+        const email_b = btoa(email);
+        const password_b = btoa(password);
+        this.$store.dispatch("postUserInfo", {
+          email_b,
+          password_b,
+          _csrf
+        });
       } else {
         this.alertText = "请输入有效的邮箱!";
         this.showAlert = true;
