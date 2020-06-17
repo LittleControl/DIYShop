@@ -12,7 +12,7 @@
             <span class="user-icon">
               <i class="iconfont icon-shouji icon-mobile" />
             </span>
-            <span class="icon-mobile-number">{{userInfo.tel?userInfo.tel:'暂无绑定手机号'}}</span>
+            <span class="icon-mobile-number">{{userInfo.bio?userInfo.bio:'这个人懒死了,还没有填写bio'}}</span>
           </p>
         </div>
         <span class="arrow">

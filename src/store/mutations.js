@@ -16,9 +16,6 @@ export default {
         state.shopList = shopList
     },
     [POST_USERINFO](state, userInfo) {
-        if (userInfo.tel) {
-            userInfo.tel = atob(userInfo.tel)
-        }
         state.userInfo = userInfo
     }
 
