@@ -7,12 +7,12 @@
           <i class="iconfont icon-icon-test" />
         </div>
         <div class="user-info">
-          <p class="user-info-top">登录/注册</p>
+          <p class="user-info-top">{{userInfo.name?userInfo.name:'登录/注册'}}</p>
           <p>
             <span class="user-icon">
               <i class="iconfont icon-shouji icon-mobile" />
             </span>
-            <span class="icon-mobile-number">暂无绑定手机号</span>
+            <span class="icon-mobile-number">{{userInfo.tel?userInfo.tel:'暂无绑定手机号'}}</span>
           </p>
         </div>
         <span class="arrow">
@@ -70,7 +70,7 @@
           <i class="iconfont icon-filedicon_memberco" />
         </span>
         <div class="my_order_div">
-          <span>硅谷外卖会员卡</span>
+          <span>外卖会员卡</span>
           <span class="my_order_icon">
             <i class="iconfont icon-jiantou" />
           </span>
@@ -95,10 +95,14 @@
 
 <script>
 import HeadTop from "../components/HeadTop";
+import { mapState } from "vuex";
 
 export default {
   components: {
     HeadTop
+  },
+  computed: {
+    ...mapState(["userInfo"])
   }
 };
 </script>

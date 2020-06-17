@@ -74,7 +74,6 @@
 
 <script>
 import AlterTip from "../components/AlterTip";
-import Cookies from "js-cookie";
 
 export default {
   data() {
@@ -91,15 +90,14 @@ export default {
     login() {
       let reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
       if (reg.test(this.email)) {
-        let _csrf = Cookies.get("csrfToken");
         const { email, password } = this;
         const email_b = btoa(email);
         const password_b = btoa(password);
         this.$store.dispatch("postUserInfo", {
-          email_b,
-          password_b,
-          _csrf
+          email: email_b,
+          password: password_b
         });
+        this.$router.replace("/profile");
       } else {
         this.alertText = "请输入有效的邮箱!";
         this.showAlert = true;
