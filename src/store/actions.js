@@ -32,9 +32,8 @@ export default {
         let shopList = await reqShopList()
         commit(GET_SHOPLIST, shopList)
     },
-    async postUserInfo({ commit }, { email, password, _csrf }) {
-        let userInfo = await reqUserInfo({ email, password, _csrf })
-        console.log(userInfo)
+    async postUserInfo({ commit }, { email, password }) {
+        let userInfo = await reqUserInfo({ email, password })
         commit(POST_USERINFO, userInfo)
     }
 }
