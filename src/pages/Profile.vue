@@ -2,17 +2,22 @@
   <div class="profile">
     <HeadTop title="我的信息" />
     <section class="profile-number">
-      <router-link to="/login" class="profile-link">
+      <router-link
+        to="/login"
+        class="profile-link"
+      >
         <div class="profile_image">
           <i class="iconfont icon-icon-test" />
         </div>
         <div class="user-info">
-          <p class="user-info-top">{{userInfo.name?userInfo.name:'登录/注册'}}</p>
+          <p class="user-info-top">
+            {{ userInfo.name?userInfo.name:'登录/注册' }}
+          </p>
           <p>
             <span class="user-icon">
               <i class="iconfont icon-shouji icon-mobile" />
             </span>
-            <span class="icon-mobile-number">{{userInfo.bio?userInfo.bio:'这个人懒死了,还没有填写bio'}}</span>
+            <span class="icon-mobile-number">{{ userInfo.bio?userInfo.bio:'这个人懒死了,还没有填写bio' }}</span>
           </p>
         </div>
         <span class="arrow">
@@ -22,19 +27,28 @@
     </section>
     <section class="profile_info_data border-1px">
       <ul class="info_data_list">
-        <a href="javascript:" class="info_data_link">
+        <a
+          href="javascript:"
+          class="info_data_link"
+        >
           <span class="info_data_top">
             <span>0.00</span>元
           </span>
           <span class="info_data_bottom">我的余额</span>
         </a>
-        <a href="javascript:" class="info_data_link">
+        <a
+          href="javascript:"
+          class="info_data_link"
+        >
           <span class="info_data_top">
             <span>0</span>个
           </span>
           <span class="info_data_bottom">我的优惠</span>
         </a>
-        <a href="javascript:" class="info_data_link">
+        <a
+          href="javascript:"
+          class="info_data_link"
+        >
           <span class="info_data_top">
             <span>0</span>分
           </span>
@@ -43,7 +57,10 @@
       </ul>
     </section>
     <section class="profile_my_order border-1px">
-      <a href="javascript:" class="my_order">
+      <a
+        href="javascript:"
+        class="my_order"
+      >
         <span>
           <i class="iconfont icon-xinbaniconshangchuan-" />
         </span>
@@ -54,7 +71,10 @@
           </span>
         </div>
       </a>
-      <a href="javascript:" class="my_order">
+      <a
+        href="javascript:"
+        class="my_order"
+      >
         <span>
           <i class="iconfont icon-shangcheng" />
         </span>
@@ -65,7 +85,10 @@
           </span>
         </div>
       </a>
-      <a href="javascript:" class="my_order">
+      <a
+        href="javascript:"
+        class="my_order"
+      >
         <span>
           <i class="iconfont icon-filedicon_memberco" />
         </span>
@@ -78,7 +101,10 @@
       </a>
     </section>
     <section class="profile_my_order border-1px">
-      <a href="javascript:" class="my_order">
+      <a
+        href="javascript:"
+        class="my_order"
+      >
         <span>
           <i class="iconfont icon-fuwuerji" />
         </span>
@@ -94,17 +120,17 @@
 </template>
 
 <script>
-import HeadTop from "../components/HeadTop";
-import { mapState } from "vuex";
+import HeadTop from '../components/HeadTop'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     HeadTop
   },
   computed: {
-    ...mapState(["userInfo"])
+    ...mapState(['userInfo'])
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">

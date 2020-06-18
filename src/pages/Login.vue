@@ -2,31 +2,58 @@
   <div class="loginContainer">
     <div class="loginInner">
       <div class="login_header">
-        <h2 class="login_logo">DIYShop</h2>
+        <h2 class="login_logo">
+          DIYShop
+        </h2>
         <div class="login_header_title">
-          <a href="javascript:;" :class="{on: loginWay}" @click="loginWay = true">短信登录</a>
-          <a href="javascript:;" :class="{on: !loginWay}" @click="loginWay = false">密码登录</a>
+          <a
+            href="javascript:"
+            :class="{on: loginWay}"
+            @click="loginWay = true"
+          >短信登录</a>
+          <a
+            href="javascript:"
+            :class="{on: !loginWay}"
+            @click="loginWay = false"
+          >密码登录</a>
         </div>
       </div>
       <div class="login_content">
         <form>
           <div :class="{on: loginWay}">
             <section class="login_message">
-              <input type="tel" maxlength="11" placeholder="手机号" />
-              <button disabled="disabled" class="get_verification">获取验证码</button>
+              <input
+                type="tel"
+                maxlength="11"
+                placeholder="手机号"
+              >
+              <button
+                disabled="disabled"
+                class="get_verification"
+              >
+                获取验证码
+              </button>
             </section>
             <section class="login_verification">
-              <input type="tel" maxlength="8" placeholder="验证码" />
+              <input
+                type="tel"
+                maxlength="8"
+                placeholder="验证码"
+              >
             </section>
             <section class="login_hint">
               温馨提示：未注册帐号的手机号，登录时将自动注册，且代表已同意
-              <a href="javascript:;">《用户服务协议》</a>
+              <a href="javascript:">《用户服务协议》</a>
             </section>
           </div>
           <div :class="{on: !loginWay}">
             <section>
               <section class="login_message">
-                <input type="email" placeholder="邮箱" v-model="email" />
+                <input
+                  type="email"
+                  placeholder="邮箱"
+                  v-model="email"
+                >
               </section>
               <section class="login_verification">
                 <input
@@ -36,7 +63,7 @@
                   placeholder="密码"
                   v-model="password"
                   v-if="!showPwd"
-                />
+                >
                 <input
                   type="text"
                   maxlength="16"
@@ -44,13 +71,16 @@
                   placeholder="密码"
                   v-model="password"
                   v-else
-                />
+                >
                 <div
                   class="switch_button"
                   :class="showPwd ? 'on' : 'off'"
                   @click="showPwd = !showPwd"
                 >
-                  <div class="switch_circle" :class="{right: showPwd}"></div>
+                  <div
+                    class="switch_circle"
+                    :class="{right: showPwd}"
+                  />
                   <span class="switch_text">abc</span>
                 </div>
               </section>
@@ -60,95 +90,111 @@
               </section>-->
             </section>
           </div>
-          <button class="login_submit" @click.prevent="login">登录</button>
+          <button
+            class="login_submit"
+            @click.prevent="login"
+          >
+            登录
+          </button>
         </form>
-        <a href="https://github.com/LittleControl/DIYShop" class="about_us">关于我们</a>
+        <a
+          href="https://github.com/LittleControl/DIYShop"
+          class="about_us"
+        >关于我们</a>
       </div>
-      <a href="javascript:" class="go_back" @click="$router.back()">
-        <i class="iconfont icon-jiantou4"></i>
+      <a
+        href="javascript:"
+        class="go_back"
+        @click="$router.back()"
+      >
+        <i class="iconfont icon-jiantou4" />
       </a>
     </div>
-    <AlterTip :alertText="alertText" @closeTip="closeTip" v-show="showAlert" />
+    <AlterTip
+      :alert-text="alertText"
+      @closeTip="closeTip"
+      v-show="showAlert"
+    />
   </div>
 </template>
 
 <script>
-import AlterTip from "../components/AlterTip";
+import AlterTip from '../components/AlterTip'
 
 export default {
   data() {
     return {
       loginWay: true, //true for message, false for passwd
       showPwd: false,
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       showAlert: false,
-      alertText: ""
-    };
+      alertText: ''
+    }
   },
   methods: {
     login() {
-      let reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+      let reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
       if (reg.test(this.email)) {
-        const { email, password } = this;
-        const email_b = btoa(email);
-        const password_b = btoa(password);
-        this.$store.dispatch("postUserInfo", {
+        const { email, password } = this
+        const email_b = btoa(email)
+        const password_b = btoa(password)
+        this.$store.dispatch('postUserInfo', {
           email: email_b,
           password: password_b
-        });
-        this.$router.replace("/profile");
+        })
+        this.$router.replace('/profile')
       } else {
-        this.alertText = "请输入有效的邮箱!";
-        this.showAlert = true;
+        this.alertText = '请输入有效的邮箱!'
+        this.showAlert = true
       }
     },
     closeTip() {
-      this.showAlert = false;
+      this.showAlert = false
     }
   },
   components: {
     AlterTip
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
 .loginContainer {
-  width: 100%;
-  height: 100%;
-  background: #fff;
+  width: 100%
+  height: 100%
+  background: #fff
 
   .loginInner {
-    padding-top: 60px;
-    width: 80%;
-    margin: 0 auto;
+    padding-top: 60px
+    width: 80%
+    margin: 0 auto
 
     .login_header {
       .login_logo {
-        font-size: 40px;
-        font-weight: bold;
-        color: #189eff;
-        text-align: center;
+        font-size: 40px
+        font-weight: bold
+        color: #189eff
+        text-align: center
       }
 
       .login_header_title {
-        padding-top: 40px;
-        text-align: center;
+        padding-top: 40px
+        text-align: center
 
         >a {
-          color: #333;
-          font-size: 14px;
-          padding-bottom: 4px;
+          color: #333
+          font-size: 14px
+          padding-bottom: 4px
 
           &:first-child {
-            margin-right: 40px;
+            margin-right: 40px
           }
 
           &.on {
-            color: #189eff;
-            font-weight: 700;
-            border-bottom: 2px solid #189eff;
+            color: #189eff
+            font-weight: 700
+            border-bottom: 2px solid #189eff
           }
         }
       }
@@ -157,147 +203,147 @@ export default {
     .login_content {
       >form {
         >div {
-          display: none;
+          display: none
 
           &.on {
-            display: block;
+            display: block
           }
 
           input {
-            width: 100%;
-            height: 100%;
-            padding-left: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            outline: 0;
-            font: 400 14px Arial;
+            width: 100%
+            height: 100%
+            padding-left: 10px
+            box-sizing: border-box
+            border: 1px solid #ddd
+            border-radius: 4px
+            outline: 0
+            font: 400 14px Arial
 
             &:focus {
-              border: 1px solid #02a774;
+              border: 1px solid #02a774
             }
           }
 
           .login_message {
-            position: relative;
-            margin-top: 16px;
-            height: 48px;
-            font-size: 14px;
-            background: #fff;
+            position: relative
+            margin-top: 16px
+            height: 48px
+            font-size: 14px
+            background: #fff
 
             .get_verification {
-              position: absolute;
-              top: 50%;
-              right: 10px;
-              transform: translateY(-50%);
-              border: 0;
-              color: #ccc;
-              font-size: 14px;
-              background: transparent;
+              position: absolute
+              top: 50%
+              right: 10px
+              transform: translateY(-50%)
+              border: 0
+              color: #ccc
+              font-size: 14px
+              background: transparent
             }
           }
 
           .login_verification {
-            position: relative;
-            margin-top: 16px;
-            height: 48px;
-            font-size: 14px;
-            background: #fff;
+            position: relative
+            margin-top: 16px
+            height: 48px
+            font-size: 14px
+            background: #fff
 
             .switch_button {
-              font-size: 12px;
-              border: 1px solid #ddd;
-              border-radius: 8px;
-              transition: background-color 0.3s, border-color 0.3s;
-              padding: 0 6px;
-              width: 30px;
-              height: 16px;
-              line-height: 16px;
-              color: #fff;
-              position: absolute;
-              top: 50%;
-              right: 10px;
-              transform: translateY(-50%);
+              font-size: 12px
+              border: 1px solid #ddd
+              border-radius: 8px
+              transition: background-color 0.3s, border-color 0.3s
+              padding: 0 6px
+              width: 30px
+              height: 16px
+              line-height: 16px
+              color: #fff
+              position: absolute
+              top: 50%
+              right: 10px
+              transform: translateY(-50%)
 
               &.off {
-                background: #fff;
+                background: #fff
 
                 .switch_text {
-                  float: right;
-                  color: #ddd;
+                  float: right
+                  color: #ddd
                 }
               }
 
               &.on {
-                background: #189eff;
+                background: #189eff
               }
 
               >.switch_circle {
                 // transform translateX(27px)
-                position: absolute;
-                top: -1px;
-                left: -1px;
-                width: 16px;
-                height: 16px;
-                border: 1px solid #ddd;
-                border-radius: 50%;
-                background: #fff;
-                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-                transition: transform 0.3s;
+                position: absolute
+                top: -1px
+                left: -1px
+                width: 16px
+                height: 16px
+                border: 1px solid #ddd
+                border-radius: 50%
+                background: #fff
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1)
+                transition: transform 0.3s
 
                 &.right {
-                  transform: translateX(30px);
+                  transform: translateX(30px)
                 }
               }
             }
           }
 
           .login_hint {
-            margin-top: 12px;
-            color: #999;
-            font-size: 14px;
-            line-height: 20px;
+            margin-top: 12px
+            color: #999
+            font-size: 14px
+            line-height: 20px
 
             >a {
-              color: #189eff;
+              color: #189eff
             }
           }
         }
 
         .login_submit {
-          display: block;
-          width: 100%;
-          height: 42px;
-          margin-top: 30px;
-          border-radius: 4px;
-          background: #189eff;
-          color: #fff;
-          text-align: center;
-          font-size: 16px;
-          line-height: 42px;
-          border: 0;
+          display: block
+          width: 100%
+          height: 42px
+          margin-top: 30px
+          border-radius: 4px
+          background: #189eff
+          color: #fff
+          text-align: center
+          font-size: 16px
+          line-height: 42px
+          border: 0
         }
       }
 
       .about_us {
-        display: block;
-        font-size: 12px;
-        margin-top: 20px;
-        text-align: center;
-        color: #999;
+        display: block
+        font-size: 12px
+        margin-top: 20px
+        text-align: center
+        color: #999
       }
     }
 
     .go_back {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      width: 30px;
-      height: 30px;
+      position: absolute
+      top: 5px
+      left: 5px
+      width: 30px
+      height: 30px
 
       >.iconfont {
-        font-size: 30px;
-        color: #999;
+        font-size: 30px
+        color: #999
       }
     }
   }

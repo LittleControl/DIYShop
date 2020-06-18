@@ -1,24 +1,36 @@
 <template>
   <div class="shop">
     <HeadTop title="商家店铺" />
-    <form class="search_form" action="#">
-      <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input" />
-      <input type="submit" name="submit" class="search_submit" />
+    <form
+      class="search_form"
+      action="#"
+    >
+      <input
+        type="search"
+        name="search"
+        placeholder="请输入商家或美食名称"
+        class="search_input"
+      >
+      <input
+        type="submit"
+        name="submit"
+        class="search_submit"
+      >
     </form>
     <ShopList />
   </div>
 </template>
 
 <script>
-import HeadTop from "../components/HeadTop";
-import ShopList from "../components/ShopList";
+import HeadTop from '../components/HeadTop'
+import ShopList from '../components/ShopList'
 
 export default {
   components: {
     HeadTop,
     ShopList
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
