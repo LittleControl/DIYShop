@@ -12,7 +12,7 @@
         class="confrim"
         @click="closeTip"
       >
-        确认
+        ç¡®è®¤
       </div>
     </section>
   </div>
@@ -20,10 +20,8 @@
 
 <script>
 export default {
-  props: {
-    alertText: String
-  },
-
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['alertText'],
   methods: {
     closeTip() {
       this.$emit('closeTip')
