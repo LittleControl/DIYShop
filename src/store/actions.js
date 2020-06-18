@@ -3,13 +3,15 @@ import {
     GET_BANNERS,
     GET_SHOPLIST,
     POST_USERINFO,
+    SIGNUP_ERROR
 } from './mutation-types'
 
 import {
     reqAddress,
     reqBanners,
     reqShopList,
-    reqUserInfo
+    reqUserInfo,
+    reqSignup
 } from '../api/index'
 
 export default {
@@ -33,7 +35,15 @@ export default {
         commit(GET_SHOPLIST, shopList)
     },
     async postUserInfo({ commit }, { email, password }) {
-        let userInfo = await reqUserInfo({ email, password })
-        commit(POST_USERINFO, userInfo)
+        let { userInfo, resCode } = await reqUserInfo({ email, password })
+        commit(POST_USERINFO, { userInfo, resCode })
+    },
+    async postSignup({ commit }, { email, password, name, bio }) {
+        let resCode = await reqSignup({ email, password, name, bio })
+        if (resCode === 200) {
+            commit(POST_USERINFO, { email, password, name, bio })
+        } else {
+            commit(SIGNUP_ERROR, resCode)
+        }
     }
 }

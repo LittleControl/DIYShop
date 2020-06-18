@@ -2,5 +2,6 @@ export default {
     address: '',
     banners: [],
     shopList: [],
-    userInfo: {}
+    userInfo: {},
+    resCode: 200
 }
