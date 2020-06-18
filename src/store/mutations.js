@@ -3,6 +3,7 @@ import {
     GET_BANNERS,
     GET_SHOPLIST,
     POST_USERINFO,
+    SIGNUP_ERROR
 } from './mutation-types'
 
 export default {
@@ -15,8 +16,12 @@ export default {
     [GET_SHOPLIST](state, shopList) {
         state.shopList = shopList
     },
-    [POST_USERINFO](state, userInfo) {
+    [POST_USERINFO](state, { userInfo, resCode }) {
         state.userInfo = userInfo
+        state.resCode = resCode
+    },
+    [SIGNUP_ERROR](state, resCode) {
+        state.resCode = resCode
     }
 
 }

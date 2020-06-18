@@ -12,7 +12,7 @@
         class="confrim"
         @click="closeTip"
       >
-        ç¡®è®¤
+        不要戳我呀！
       </div>
     </section>
   </div>

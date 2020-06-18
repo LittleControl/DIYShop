@@ -8,50 +8,25 @@
         <div class="login_header_title">
           <a
             href="javascript:"
-            :class="{on: loginWay}"
-            @click="loginWay = true"
-          >短信登录</a>
+            :class="{on: !isLogin}"
+            @click="isLogin = false"
+          >注册</a>
           <a
             href="javascript:"
-            :class="{on: !loginWay}"
-            @click="loginWay = false"
-          >密码登录</a>
+            :class="{on: isLogin}"
+            @click="isLogin = true"
+          >登录</a>
         </div>
       </div>
       <div class="login_content">
         <form>
-          <div :class="{on: loginWay}">
-            <section class="login_message">
-              <input
-                type="tel"
-                maxlength="11"
-                placeholder="手机号"
-              >
-              <button
-                disabled="disabled"
-                class="get_verification"
-              >
-                获取验证码
-              </button>
-            </section>
-            <section class="login_verification">
-              <input
-                type="tel"
-                maxlength="8"
-                placeholder="验证码"
-              >
-            </section>
-            <section class="login_hint">
-              温馨提示：未注册帐号的手机号，登录时将自动注册，且代表已同意
-              <a href="javascript:">《用户服务协议》</a>
-            </section>
-          </div>
-          <div :class="{on: !loginWay}">
+          <div :class="{on: !isLogin}">
             <section>
               <section class="login_message">
                 <input
                   type="email"
                   placeholder="邮箱"
+                  required
                   v-model="email"
                 >
               </section>
@@ -61,6 +36,7 @@
                   maxlength="16"
                   minlength="8"
                   placeholder="密码"
+                  required
                   v-model="password"
                   v-if="!showPwd"
                 >
@@ -69,6 +45,7 @@
                   maxlength="16"
                   minlength="8"
                   placeholder="密码"
+                  required
                   v-model="password"
                   v-else
                 >
@@ -84,18 +61,81 @@
                   <span class="switch_text">abc</span>
                 </div>
               </section>
-              <!-- <section class="login_message">
-                <input type="text" maxlength="11" placeholder="验证码" />
-                <img class="get_verification" src="/img/captcha.svg" alt="captcha" />
-              </section>-->
+              <section class="login_message">
+                <input
+                  type="text"
+                  placeholder="昵称"
+                  v-model="name"
+                >
+              </section>
+              <section class="login_message">
+                <input
+                  type="text"
+                  placeholder="简介"
+                  v-model="bio"
+                >
+              </section>
+            </section>
+            <button
+              class="login_submit"
+              @click.prevent="login"
+            >
+              注册
+            </button>
+            <section class="login_hint">
+              温馨提示：注册帐号代表已同意
+              <a href="https://github.com/LittleControl/DIYShop">《用户服务协议》</a>
             </section>
           </div>
-          <button
-            class="login_submit"
-            @click.prevent="login"
-          >
-            登录
-          </button>
+          <div :class="{on: isLogin}">
+            <section>
+              <section class="login_message">
+                <input
+                  type="email"
+                  placeholder="邮箱"
+                  required
+                  v-model="email"
+                >
+              </section>
+              <section class="login_verification">
+                <input
+                  type="password"
+                  maxlength="16"
+                  minlength="8"
+                  placeholder="密码"
+                  required
+                  v-model="password"
+                  v-if="!showPwd"
+                >
+                <input
+                  type="text"
+                  maxlength="16"
+                  minlength="8"
+                  placeholder="密码"
+                  required
+                  v-model="password"
+                  v-else
+                >
+                <div
+                  class="switch_button"
+                  :class="showPwd ? 'on' : 'off'"
+                  @click="showPwd = !showPwd"
+                >
+                  <div
+                    class="switch_circle"
+                    :class="{right: showPwd}"
+                  />
+                  <span class="switch_text">abc</span>
+                </div>
+              </section>
+            </section>
+            <button
+              class="login_submit"
+              @click.prevent="login"
+            >
+              登录
+            </button>
+          </div>
         </form>
         <a
           href="https://github.com/LittleControl/DIYShop"
@@ -120,41 +160,71 @@
 
 <script>
 import AlterTip from '../components/AlterTip'
+import {mapState} from 'vuex'
 
 export default {
   data() {
     return {
-      loginWay: true, //true for message, false for passwd
+      isLogin: true,
       showPwd: false,
       email: '',
       password: '',
+      name: '',
+      bio: '',
       showAlert: false,
       alertText: ''
     }
   },
   methods: {
     login() {
-      let reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-      if (reg.test(this.email)) {
-        const { email, password } = this
-        const email_b = btoa(email)
-        const password_b = btoa(password)
-        this.$store.dispatch('postUserInfo', {
-          email: email_b,
-          password: password_b
-        })
-        this.$router.replace('/profile')
-      } else {
-        this.alertText = '请输入有效的邮箱!'
+      const { email, password, name, bio, isLogin, resCode } = this
+      if(email.length === 0 || password.length === 0) {
+        this.alertText = '邮箱或密码不可以为空呀!'
         this.showAlert = true
+      } else {
+        let reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+        if (reg.test(email)) {
+          const email_b = btoa(email)
+          const password_b = btoa(password)
+          if(isLogin) {
+            this.$store.dispatch('postUserInfo', {
+              email: email_b,
+              password: password_b
+            })
+            if(resCode === 200){
+              this.alertText = '登录成功，点击跳转个人中心'
+              this.showAlert = true
+            }
+          } else {
+            this.$store.dispatch('postSignup', {
+              email: email_b,
+              password: password_b,
+              name,
+              bio
+            })
+            if(resCode === 200){
+              this.alertText = '注册成功，点击跳转个人中心'
+              this.showAlert = true
+            }
+          }
+        } else {
+          this.alertText = '请输入有效的邮箱!'
+          this.showAlert = true
+        }
       }
     },
     closeTip() {
       this.showAlert = false
+      if(this.resCode === 200) {
+        this.$router.replace('/profile')
+      }
     }
   },
   components: {
     AlterTip
+  },
+  computed: {
+    ...mapState(['resCode'])
   }
 }
 </script>
