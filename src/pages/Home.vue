@@ -1,25 +1,47 @@
 <template>
   <div class="home">
     <HeadTop :title="address">
-      <span class="header_search" slot="left">
+      <span
+        class="header_search"
+        slot="left"
+      >
         <i class="iconfont icon-sousuo" />
       </span>
-      <router-link to="/login" class="header_login" slot="right">
+      <router-link
+        to="/login"
+        class="header_login"
+        slot="right"
+      >
         <span class="header_login_text">登录|注册</span>
       </router-link>
     </HeadTop>
     <nav class="home_nav">
       <div class="swiper-container">
-        <div class="swiper-wrapper" v-if="banners.length > 0">
-          <div class="swiper-slide" v-for="(banner, index) in banners" :key="index">
+        <div
+          class="swiper-wrapper"
+          v-if="banners.length > 0"
+        >
+          <div
+            class="swiper-slide"
+            v-for="(banner, index) in banners"
+            :key="index"
+          >
             <div class="banner">
-              <img class="banner_item" :src="banner.url" alt="Banner1" />
+              <img
+                class="banner_item"
+                :src="banner.url"
+                alt="Banner1"
+              >
             </div>
           </div>
         </div>
         <div v-else>
           <div class="banner">
-            <img class="banner_item" src="/img/banner/init_banner.svg" alt="init" />
+            <img
+              class="banner_item"
+              src="/img/banner/init_banner.svg"
+              alt="init"
+            >
           </div>
         </div>
         <div class="swiper-pagination" />
@@ -36,70 +58,70 @@
 </template>
 
 <script>
-import Swiper from "swiper";
-import HeadTop from "../components/HeadTop";
-import "swiper/css/swiper.min.css";
-import ShopList from "../components/ShopList";
-import { mapState } from "vuex";
+import Swiper from 'swiper'
+import HeadTop from '../components/HeadTop'
+import 'swiper/css/swiper.min.css'
+import ShopList from '../components/ShopList'
+import { mapState } from 'vuex'
 
 export default {
   mounted() {
-    this.$store.dispatch("getAddress");
-    this.$store.dispatch("getBanners");
+    this.$store.dispatch('getAddress')
+    this.$store.dispatch('getBanners')
   },
   components: {
     HeadTop,
     ShopList
   },
   computed: {
-    ...mapState(["address", "banners"])
+    ...mapState(['address', 'banners'])
   },
   watch: {
     banners() {
       this.$nextTick(() => {
-        new Swiper(".swiper-container", {
+        new Swiper('.swiper-container', {
           loop: true,
           pagination: {
-            el: ".swiper-pagination"
+            el: '.swiper-pagination'
           },
           grabCursor: true,
           autoplay: true
-        });
-      });
+        })
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
-@import '../common/mixins.styl';
+@import '../common/mixins.styl'
 
 .home {
-  width: 100%;
+  width: 100%
 
   .home_nav {
-    bottom-border-1px(#e4e4e4);
-    margin-top: 45px;
-    height: 200px;
-    background: #fff;
+    bottom-border-1px(#e4e4e4)
+    margin-top: 45px
+    height: 200px
+    background: #fff
 
     .swiper-container {
-      width: 100%;
-      height: 100%;
+      width: 100%
+      height: 100%
 
       .swiper-wrapper {
-        width: 100%;
-        height: 100%;
+        width: 100%
+        height: 100%
 
         .swiper-slide {
-          display: flex;
-          justify-content: center;
-          align-items: flex-start;
-          flex-wrap: wrap;
+          display: flex
+          justify-content: center
+          align-items: flex-start
+          flex-wrap: wrap
 
           .banner {
             .banner_item {
-              width: 100%;
+              width: 100%
             }
           }
         }
@@ -107,28 +129,28 @@ export default {
 
       .swiper-pagination {
         >span.swiper-pagination-bullet-active {
-          background: #02a774;
+          background: #02a774
         }
       }
     }
   }
 
   .home_shop_list {
-    top-border-1px(#e4e4e4);
-    background: #fff;
+    top-border-1px(#e4e4e4)
+    background: #fff
 
     .shop_header {
-      padding: 10px 10px 0;
+      padding: 10px 10px 0
 
       .shop_icon {
-        margin-left: 5px;
-        color: #999;
+        margin-left: 5px
+        color: #999
       }
 
       .shop_header_title {
-        color: #999;
-        font-size: 14px;
-        line-height: 20px;
+        color: #999
+        font-size: 14px
+        line-height: 20px
       }
     }
   }

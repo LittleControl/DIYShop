@@ -7,7 +7,7 @@
       @click="jumpTo('/home')"
     >
       <span class="item_icon">
-        <i class="iconfont icon-shouye-"></i>
+        <i class="iconfont icon-shouye-" />
       </span>
       <span>Home</span>
     </a>
@@ -18,7 +18,7 @@
       @click="jumpTo('/shop')"
     >
       <span class="item_icon">
-        <i class="iconfont icon-dianpu"></i>
+        <i class="iconfont icon-dianpu" />
       </span>
       <span>Shop</span>
     </a>
@@ -29,7 +29,7 @@
       @click="jumpTo('/order')"
     >
       <span class="item_icon">
-        <i class="iconfont icon-dingdan"></i>
+        <i class="iconfont icon-dingdan" />
       </span>
       <span>Order</span>
     </a>
@@ -40,7 +40,7 @@
       @click="jumpTo('/profile')"
     >
       <span class="item_icon">
-        <i class="iconfont icon-wode-"></i>
+        <i class="iconfont icon-wode-" />
       </span>
       <span>Profile</span>
     </a>
@@ -51,10 +51,10 @@
 export default {
   methods: {
     jumpTo(path) {
-      this.$router.replace(path);
+      this.$router.replace(path)
     }
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">

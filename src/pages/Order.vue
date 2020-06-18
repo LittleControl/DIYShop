@@ -2,7 +2,7 @@
   <div class="order">
     <HeadTop title="订单列表" />
     <section class="order_no_login">
-      <img src="/img/order/person.png" />
+      <img src="/img/order/person.png">
       <h3>登录后查看外卖订单</h3>
       <button>立即登陆</button>
     </section>
@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import HeadTop from "../components/HeadTop";
+import HeadTop from '../components/HeadTop'
 
 export default {
   components: {
     HeadTop
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">

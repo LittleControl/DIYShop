@@ -1,25 +1,47 @@
 <template>
   <div class="shop_container">
-    <ul class="shop_list" v-if="shopList.length > 0">
-      <li class="shop_li border-1px" v-for="(shop, index) in shopList" :key="index">
+    <ul
+      class="shop_list"
+      v-if="shopList.length > 0"
+    >
+      <li
+        class="shop_li border-1px"
+        v-for="(shop, index) in shopList"
+        :key="index"
+      >
         <a>
           <div class="shop_left">
-            <img class="shop_img" :src="shop.img" />
+            <img
+              class="shop_img"
+              :src="shop.img"
+            >
           </div>
           <div class="shop_right">
             <div class="shop_detail_header">
-              <h4 class="shop_title ellipsis">{{shop.name}}</h4>
+              <h4 class="shop_title ellipsis">{{ shop.name }}</h4>
             </div>
             <div class="shop_detail_ul">
-              <div class="supports" v-if="shop.support.quickShip">急速发货</div>
-              <div class="supports" v-if="shop.support.noReason">7天无理由</div>
-              <div class="supports" v-if="shop.support.isGirl">女店主</div>
+              <div
+                class="supports"
+                v-if="shop.support.quickShip"
+              >急速发货</div>
+              <div
+                class="supports"
+                v-if="shop.support.noReason"
+              >7天无理由</div>
+              <div
+                class="supports"
+                v-if="shop.support.isGirl"
+              >女店主</div>
             </div>
             <div class="shop_rating_order">
               <div class="shop_rating_order_left">
-                <Star :rating="shop.rating" :size="36" />
-                <div class="rating_section">{{shop.rating}} 分</div>
-                <div class="order_section">月售出{{shop.count}}单</div>
+                <Star
+                  :rating="shop.rating"
+                  :size="36"
+                />
+                <div class="rating_section">{{ shop.rating }} 分</div>
+                <div class="order_section">月售出{{ shop.count }}单</div>
               </div>
             </div>
           </div>
@@ -27,27 +49,33 @@
       </li>
     </ul>
     <ul v-else>
-      <li v-for="item in 6" :key="item">
-        <img src="/img/shop/init_shop.svg" alt="init" />
+      <li
+        v-for="item in 6"
+        :key="item"
+      >
+        <img
+          src="/img/shop/init_shop.svg"
+          alt="init"
+        >
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-import Star from "./Star";
+import { mapState } from 'vuex'
+import Star from './Star'
 export default {
   mounted() {
-    this.$store.dispatch("getShopList");
+    this.$store.dispatch('getShopList')
   },
   computed: {
-    ...mapState(["shopList"])
+    ...mapState(['shopList'])
   },
   components: {
     Star
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">

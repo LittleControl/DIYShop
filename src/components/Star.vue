@@ -1,34 +1,49 @@
 <template>
-  <div class="star" :class="'star-'+ size">
-    <span class="star-item on" v-for="item in ratingScore.on" :key="item" />
-    <span class="star-item half" v-if="ratingScore.half" />
-    <span class="star-item off" v-for="item in ratingScore.off" :key="item + 5" />
+  <div
+    class="star"
+    :class="'star-'+ size"
+  >
+    <span
+      class="star-item on"
+      v-for="item in ratingScore.on"
+      :key="item"
+    />
+    <span
+      class="star-item half"
+      v-if="ratingScore.half"
+    />
+    <span
+      class="star-item off"
+      v-for="item in ratingScore.off"
+      :key="item + 5"
+    />
   </div>
 </template>
 <script>
 export default {
-  props: ["rating", "size"],
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['rating', 'size'],
   computed: {
     ratingScore() {
       let res = {
         on: 0,
         off: 0,
         half: true
-      };
-      const { rating } = this;
-      if (Math.floor(rating) < rating) {
-        res.half = true;
-        res.on = Math.floor(rating);
-        res.off = 5 - Math.floor(rating) - 1;
-      } else {
-        res.on = rating;
-        res.half = false;
-        res.off = 5 - rating;
       }
-      return res;
+      const { rating } = this
+      if (Math.floor(rating) < rating) {
+        res.half = true
+        res.on = Math.floor(rating)
+        res.off = 5 - Math.floor(rating) - 1
+      } else {
+        res.on = rating
+        res.half = false
+        res.off = 5 - rating
+      }
+      return res
     }
   }
-};
+}
 </script>
 <style scoped lang="stylus">
 @import '../common/mixins.styl';
