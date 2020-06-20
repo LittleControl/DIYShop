@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import FootNav from "./components/FootNav.vue";
+import FootNav from './components/FootNav.vue'
 export default {
   components: {
     FootNav
   }
-};
+}
 </script>
 
 <style scoped lang="stylus"></style>
