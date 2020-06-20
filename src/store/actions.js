@@ -39,7 +39,7 @@ export default {
         commit(POST_USERINFO, { userInfo, resCode })
     },
     async postSignup({ commit }, { email, password, name, bio }) {
-        let resCode = await reqSignup({ email, password, name, bio })
+        let { resCode } = await reqSignup({ email, password, name, bio })
         if (resCode === 200) {
             commit(POST_USERINFO, { email, password, name, bio })
         } else {
