@@ -3,5 +3,6 @@ export default {
     banners: [],
     shopList: [],
     userInfo: {},
-    resCode: 200
+    resCode: 200,
+    msg: ''
 }

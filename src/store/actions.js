@@ -3,7 +3,8 @@ import {
     GET_BANNERS,
     GET_SHOPLIST,
     POST_USERINFO,
-    SIGNUP_ERROR
+    SIGNUP_ERROR,
+    SIGNUP_SUCCESS
 } from './mutation-types'
 
 import {
@@ -35,13 +36,15 @@ export default {
         commit(GET_SHOPLIST, shopList)
     },
     async postUserInfo({ commit }, { email, password }) {
-        let { userInfo, resCode } = await reqUserInfo({ email, password })
-        commit(POST_USERINFO, { userInfo, resCode })
+        let { userInfo, resCode, msg } = await reqUserInfo({ email, password })
+        commit(POST_USERINFO, { userInfo, resCode, msg })
     },
     async postSignup({ commit }, { email, password, name, bio }) {
-        let { resCode } = await reqSignup({ email, password, name, bio })
+        const userInfo = { email, password, name, bio }
+        let { resCode, msg } = await reqSignup(userInfo)
+        console.log('action: ', resCode, msg)
         if (resCode === 200) {
-            commit(POST_USERINFO, { email, password, name, bio })
+            commit(SIGNUP_SUCCESS, { userInfo, resCode, msg })
         } else {
             commit(SIGNUP_ERROR, resCode)
         }

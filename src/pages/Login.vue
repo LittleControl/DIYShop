@@ -214,10 +214,12 @@ export default {
       }
     },
     closeTip() {
-      this.showAlert = false
-      if(this.resCode === 200) {
+      const {resCode} = this
+      console.log(resCode)
+      if(resCode === 200) {
         this.$router.replace('/profile')
       }
+      this.showAlert = false
     }
   },
   components: {
