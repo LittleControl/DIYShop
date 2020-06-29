@@ -8,6 +8,7 @@
         class="shop_li border-1px"
         v-for="(shop, index) in shopList"
         :key="index"
+        @click="$router.push('/shopinfo')"
       >
         <a>
           <div class="shop_left">
