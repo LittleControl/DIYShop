@@ -4,7 +4,8 @@ import {
     GET_SHOPLIST,
     POST_USERINFO,
     SIGNUP_ERROR,
-    SIGNUP_SUCCESS
+    SIGNUP_SUCCESS,
+    POST_SHOPINFO
 } from './mutation-types'
 
 import {
@@ -12,7 +13,8 @@ import {
     reqBanners,
     reqShopList,
     reqUserInfo,
-    reqSignup
+    reqSignup,
+    reqShopInfo
 } from '../api/index'
 
 export default {
@@ -48,5 +50,10 @@ export default {
         } else {
             commit(SIGNUP_ERROR, resCode)
         }
+    },
+    async getShopInfo({ commit }, id) {
+        const info = await reqShopInfo(id)
+        console.log(info)
+        commit(POST_SHOPINFO, { id, info })
     }
 }

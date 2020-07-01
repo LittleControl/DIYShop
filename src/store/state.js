@@ -4,5 +4,7 @@ export default {
     shopList: [],
     userInfo: {},
     resCode: 200,
-    msg: ''
+    msg: '',
+    shopInfo: [],
+    id: ''
 }
