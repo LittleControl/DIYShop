@@ -4,7 +4,8 @@ import {
     GET_SHOPLIST,
     POST_USERINFO,
     SIGNUP_SUCCESS,
-    SIGNUP_ERROR
+    SIGNUP_ERROR,
+    POST_SHOPINFO
 } from './mutation-types'
 
 export default {
@@ -28,6 +29,9 @@ export default {
     },
     [SIGNUP_ERROR](state, resCode) {
         state.resCode = resCode
+    },
+    [POST_SHOPINFO](state, { id, info }) {
+        state.id = id
+        state.shopInfo[id] = info
     }
-
 }

@@ -8,7 +8,7 @@
         class="shop_li border-1px"
         v-for="(shop, index) in shopList"
         :key="index"
-        @click="$router.push('/shopinfo')"
+        @click="toShopInfo(shop._id)"
       >
         <a>
           <div class="shop_left">
@@ -69,6 +69,12 @@ import Star from './Star'
 export default {
   mounted() {
     this.$store.dispatch('getShopList')
+  },
+  methods: {
+    toShopInfo(id) {
+      this.$store.dispatch('getShopInfo',id)
+      this.$router.push(`/shopinfo?id=${id}`)
+    }
   },
   computed: {
     ...mapState(['shopList'])
