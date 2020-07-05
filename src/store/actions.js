@@ -51,9 +51,11 @@ export default {
             commit(SIGNUP_ERROR, resCode)
         }
     },
-    async getShopInfo({ commit }, id) {
-        const info = await reqShopInfo(id)
-        console.log(info)
-        commit(POST_SHOPINFO, { id, info })
+    async getShopInfo({ commit, state }, id) {
+        if (!state.shopInfo[id]) {
+            const info = await reqShopInfo(id)
+            console.log(info)
+            commit(POST_SHOPINFO, { id, info })
+        }
     }
 }
