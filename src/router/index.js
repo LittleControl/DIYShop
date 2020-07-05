@@ -53,20 +53,20 @@ export default new VueRouter({
             component: ShopInfo,
             children: [
                 {
-                    path: '/food',
+                    path: 'food',
                     component: Food
                 },
                 {
-                    path: '/evaluation',
+                    path: 'evaluation',
                     component: Evaluation,
                 },
                 {
-                    path: '/abort',
+                    path: 'abort',
                     component: Abort
                 },
                 {
-                    path: '/',
-                    redirect: '/food'
+                    path: '',
+                    redirect: 'food'
                 }
             ]
         },

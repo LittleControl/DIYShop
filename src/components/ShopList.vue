@@ -72,7 +72,6 @@ export default {
   },
   methods: {
     toShopInfo(id) {
-      this.$store.dispatch('getShopInfo',id)
       this.$router.push(`/shopinfo?id=${id}`)
     }
   },
