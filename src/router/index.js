@@ -9,7 +9,7 @@ import Login from '../pages/Login.vue'
 import ShopInfo from '../pages/ShopInfo/ShopInfo.vue'
 import Abort from '../pages/ShopInfo/Abort.vue'
 import Evaluation from '../pages/ShopInfo/Evaluation.vue'
-import Food from '../pages/ShopInfo/Food.vue'
+import Good from '../pages/ShopInfo/Good.vue'
 
 Vue.use(VueRouter)
 
@@ -53,8 +53,8 @@ export default new VueRouter({
             component: ShopInfo,
             children: [
                 {
-                    path: 'food',
-                    component: Food
+                    path: 'good',
+                    component: Good
                 },
                 {
                     path: 'evaluation',
@@ -66,7 +66,7 @@ export default new VueRouter({
                 },
                 {
                     path: '',
-                    redirect: 'food'
+                    redirect: 'good'
                 }
             ]
         },

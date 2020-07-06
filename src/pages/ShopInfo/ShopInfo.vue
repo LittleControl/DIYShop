@@ -4,7 +4,7 @@
     <div class="tab">
       <div class="tab-item">
         <router-link
-          to="/shopinfo/food"
+          to="/shopinfo/good"
           replace
         >
           点餐
