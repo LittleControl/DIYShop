@@ -5,8 +5,12 @@ import {
     POST_USERINFO,
     SIGNUP_SUCCESS,
     SIGNUP_ERROR,
-    POST_SHOPINFO
+    POST_SHOPINFO,
+    INCREASE_FOODCOUNT,
+    DECREASE_FOODCOUNT
 } from './mutation-types'
+
+import Vue from 'vue'
 
 export default {
     [GET_ADDRESS](state, address) {
@@ -33,5 +37,19 @@ export default {
     [POST_SHOPINFO](state, { id, info }) {
         state.id = id
         state.shopInfo[id] = info
+        console.log(state.shopInfo)
+    },
+    [INCREASE_FOODCOUNT](food) {
+        if (!food.count) {
+            Vue.set(food, 'count', 1)
+        } else {
+            food.count++
+            console.log(food.count)
+        }
+    },
+    [DECREASE_FOODCOUNT](food) {
+        if (food.count) {
+            food.count--
+        }
     }
 }

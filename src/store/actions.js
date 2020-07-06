@@ -5,7 +5,9 @@ import {
     POST_USERINFO,
     SIGNUP_ERROR,
     SIGNUP_SUCCESS,
-    POST_SHOPINFO
+    POST_SHOPINFO,
+    INCREASE_FOODCOUNT,
+    DECREASE_FOODCOUNT
 } from './mutation-types'
 
 import {
@@ -56,6 +58,13 @@ export default {
             const info = await reqShopInfo(id)
             console.log(info)
             commit(POST_SHOPINFO, { id, info })
+        }
+    },
+    updateFoodCount({ commit }, { isAdd, food }) {
+        if (isAdd) {
+            commit(INCREASE_FOODCOUNT, food)
+        } else {
+            commit(DECREASE_FOODCOUNT, food)
         }
     }
 }
