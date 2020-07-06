@@ -160,6 +160,9 @@
 <script>
   import {mapGetters} from 'vuex'
   export default {
+    mounted() {
+      this.$
+    },
     data () {
       return {
         supportClasses: ['activity-green', 'activity-red', 'activity-orange'],
