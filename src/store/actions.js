@@ -6,6 +6,7 @@ import {
     SIGNUP_ERROR,
     SIGNUP_SUCCESS,
     POST_SHOPINFO,
+    SET_SHOPID,
     INCREASE_FOODCOUNT,
     DECREASE_FOODCOUNT
 } from './mutation-types'
@@ -53,12 +54,18 @@ export default {
             commit(SIGNUP_ERROR, resCode)
         }
     },
-    async getShopInfo({ commit, state }, id) {
-        if (!state.shopInfo[id]) {
-            const info = await reqShopInfo(id)
-            console.log(info)
-            commit(POST_SHOPINFO, { id, info })
-        }
+    async getShopInfo({ commit, state }) {
+        const info = await reqShopInfo(state.id)
+        commit(POST_SHOPINFO, { info })
+        return new Promise((resolve) => {
+            resolve()
+        })
+    },
+    setShopId({ commit }, id) {
+        commit(SET_SHOPID, id)
+        return new Promise((resolve) => {
+            resolve()
+        })
     },
     updateFoodCount({ commit }, { isAdd, food }) {
         if (isAdd) {

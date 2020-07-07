@@ -161,7 +161,9 @@
   import {mapGetters} from 'vuex'
   export default {
     mounted() {
-      this.$
+      if(!this.$store.state.shopInfo[this.$store.state.id]) {
+        this.$store.dispatch('getShopInfo')
+      }
     },
     data () {
       return {
