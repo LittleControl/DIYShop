@@ -6,6 +6,7 @@ import {
     SIGNUP_SUCCESS,
     SIGNUP_ERROR,
     POST_SHOPINFO,
+    SET_SHOPID,
     INCREASE_FOODCOUNT,
     DECREASE_FOODCOUNT
 } from './mutation-types'
@@ -34,10 +35,11 @@ export default {
     [SIGNUP_ERROR](state, resCode) {
         state.resCode = resCode
     },
-    [POST_SHOPINFO](state, { id, info }) {
+    [POST_SHOPINFO](state, { info }) {
+        state.shopInfo[state.id] = info
+    },
+    [SET_SHOPID](state, id) {
         state.id = id
-        state.shopInfo[id] = info
-        console.log(state.shopInfo)
     },
     [INCREASE_FOODCOUNT](food) {
         if (!food.count) {

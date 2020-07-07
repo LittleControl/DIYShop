@@ -6,5 +6,5 @@ export default {
     resCode: 200,
     msg: '',
     shopInfo: [],
-    id: ''
+    id: '5ea92650e7763d18ac4271f3'
 }

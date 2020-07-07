@@ -37,8 +37,9 @@
 
   export default {
     mounted () {
-      const {id} = this.$route.query
-      this.$store.dispatch('getShopInfo',id)
+      if(!this.$store.state.shopInfo[this.$store.state.id]) {
+        this.$store.dispatch('getShopInfo')
+      }
     },
     components: {
         ShopHead
