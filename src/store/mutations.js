@@ -41,17 +41,18 @@ export default {
     [SET_SHOPID](state, id) {
         state.id = id
     },
-    [INCREASE_FOODCOUNT](food) {
-        if (!food.count) {
-            Vue.set(food, 'count', 1)
+    [INCREASE_FOODCOUNT](state, { index, subIndex }) {
+        if (!state.shopInfo[state.id].goods[index].foods[subIndex].count) {
+            // state.shopInfo[state.id].goods[index].foods[subIndex].count = 1
+            Vue.set(state.shopInfo[state.id].goods[index].foods[subIndex], 'count', 1)
         } else {
-            food.count++
-            console.log(food.count)
+            state.shopInfo[state.id].goods[index].foods[subIndex].count++
         }
     },
-    [DECREASE_FOODCOUNT](food) {
-        if (food.count) {
-            food.count--
+    [DECREASE_FOODCOUNT](state, { index, subIndex }) {
+        console.log(index, subIndex)
+        if (state.shopInfo[state.id].goods[index].foods[subIndex].count) {
+            state.shopInfo[state.id].goods[index].foods[subIndex].count--
         }
     }
 }

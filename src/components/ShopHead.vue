@@ -2,11 +2,11 @@
   <div>
     <div
       class="shop-header"
-      v-if="shopInfo"
+      v-if="info"
     >
       <nav
         class="shop-nav"
-        :style="{backgroundImage: `url(${shopInfo.info.bgImg})`}"
+        :style="{backgroundImage: `url(${info.bgImg})`}"
       >
         <a
           class="back"
@@ -21,46 +21,46 @@
       >
         <img
           class="content-image"
-          :src="shopInfo.info.avatar"
+          :src="info.avatar"
         >
         <div class="header-content">
           <h2 class="content-title">
             <span class="content-tag">
               <span class="mini-tag">品牌</span>
             </span>
-            <span class="content-name">{{ shopInfo.info.name }}</span>
+            <span class="content-name">{{ info.name }}</span>
             <i class="content-icon" />
           </h2>
           <div class="shop-message">
-            <span class="shop-message-detail">{{ shopInfo.info.score }}</span>
-            <span class="shop-message-detail">月售{{ shopInfo.info.sellCount }}单</span>
+            <span class="shop-message-detail">{{ info.score }}</span>
+            <span class="shop-message-detail">月售{{ info.sellCount }}单</span>
             <span class="shop-message-detail">
-              {{ shopInfo.info.description }}
-              <span>约{{ shopInfo.info.deliveryTime }}分钟</span>
+              {{ info.description }}
+              <span>约{{ info.deliveryTime }}分钟</span>
             </span>
-            <span class="shop-message-detail">距离{{ shopInfo.info.distance }}</span>
+            <span class="shop-message-detail">距离{{ info.distance }}</span>
           </div>
         </div>
       </div>
 
       <div
         class="shop-header-discounts"
-        v-if="shopInfo.info.supports"
+        v-if="info.supports"
         @click="toggleSupportShow"
       >
         <div class="discounts-left">
           <div
             class="activity"
-            :class="supportClasses[shopInfo.info.supports[0].type]"
+            :class="supportClasses[info.supports[0].type]"
           >
             <span class="content-tag">
-              <span class="mini-tag">{{ shopInfo.info.supports[0].name }}</span>
+              <span class="mini-tag">{{ info.supports[0].name }}</span>
             </span>
-            <span class="activity-content ellipsis">{{ shopInfo.info.supports[0].content }}</span>
+            <span class="activity-content ellipsis">{{ info.supports[0].content }}</span>
           </div>
         </div>
         <div class="discounts-right">
-          {{ shopInfo.info.supports.length }}个优惠
+          {{ info.supports.length }}个优惠
         </div>
       </div>
 
@@ -74,27 +74,27 @@
               <span class="content-tag">
                 <span class="mini-tag">品牌</span>
               </span>
-              <span class="content-name">{{ shopInfo.info.name }}</span>
+              <span class="content-name">{{ info.name }}</span>
             </h2>
             <ul class="brief-modal-msg">
               <li>
-                <h3>{{ shopInfo.info.score }}</h3>
+                <h3>{{ info.score }}</h3>
                 <p>评分</p>
               </li>
               <li>
-                <h3>{{ shopInfo.info.sellCount }}单</h3>
+                <h3>{{ info.sellCount }}单</h3>
                 <p>月售</p>
               </li>
               <li>
-                <h3>{{ shopInfo.info.description }}</h3>
-                <p>约{{ shopInfo.info.deliveryTime }}分钟</p>
+                <h3>{{ info.description }}</h3>
+                <p>约{{ info.deliveryTime }}分钟</p>
               </li>
               <li>
-                <h3>{{ shopInfo.info.deliveryPrice }}元</h3>
+                <h3>{{ info.deliveryPrice }}元</h3>
                 <p>配送费用</p>
               </li>
               <li>
-                <h3>{{ shopInfo.info.distance }}</h3>
+                <h3>{{ info.distance }}</h3>
                 <p>距离</p>
               </li>
             </ul>
@@ -102,7 +102,7 @@
               <span>公告</span>
             </h3>
             <div class="brief-modal-notice">
-              {{ shopInfo.info.bulletin }}
+              {{ info.bulletin }}
             </div>
             <div
               class="mask-footer"
@@ -127,7 +127,7 @@
             <ul class="list">
               <li
                 class="activity-item"
-                v-for="(support, index) in shopInfo.info.supports"
+                v-for="(support, index) in info.supports"
                 :key="index"
                 :class="supportClasses[support.type]"
               >
@@ -173,7 +173,7 @@
       }
     },
     computed: {
-      ...mapGetters(['shopInfo'])
+      ...mapGetters(['info'])
     },
 
     methods: {

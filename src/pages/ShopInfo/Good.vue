@@ -37,8 +37,8 @@
             <ul>
               <li
                 class="food-item bottom-border-1px"
-                v-for="(food, index) in good.foods"
-                :key="index"
+                v-for="(food, subIndex) in good.foods"
+                :key="subIndex"
               >
                 <!-- @click="showFood(food)" -->
                 <div class="icon">
@@ -67,8 +67,11 @@
                     >￥{{ food.oldPrice }}</span>
                   </div>
                   <div class="cartcontrol-wrapper">
-                    <!-- <CartControl :food="food" /> -->
-                    <FoodCount :food="food" />
+                    <FoodCount
+                      :food="food"
+                      :index="index"
+                      :sub-index="subIndex"
+                    />
                   </div>
                 </div>
               </li>
@@ -102,7 +105,6 @@
       return {
         scrollY: 0,
         tops: [],
-        food: {},
       }
     },
     mounted() {

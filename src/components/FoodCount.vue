@@ -3,15 +3,15 @@
     <transition name="move">
       <div
         class="iconfont icon-jianshao"
-        v-if="food.count"
+        v-if="count"
         @click.stop="updateFoodCount(false)"
       />
     </transition>
     <div
       class="cart-count"
-      v-if="food.count"
+      v-if="count"
     >
-      {{ food.count }}
+      {{ count }}
     </div>
     <div
       class="iconfont icon-zengjia"
@@ -23,17 +23,37 @@
 <script>
 export default {
   props: {
-    food: {
-      type: Object,
+    index: {
+      type: Number,
       default: function() {
-        return {}
+        return 0
       }
+    },
+    subIndex: {
+      type: Number,
+      default: function() {
+        return 0
+      }
+    }
+  },
+  data() {
+    return {
+      count: 0
     }
   },
   methods: {
     updateFoodCount(isAdd) {
-      console.log(isAdd)
-      this.$store.dispatch('updateFoodCount', {isAdd, food: this.food})
+      this.$store.dispatch(
+        'updateFoodCount', 
+        {isAdd, index: this.index, subIndex: this.subIndex}
+      )
+      .then(() => {
+        if(isAdd) {
+          this.count++
+        } else {
+          this.count--
+        }
+      })
     }
   }
 }
