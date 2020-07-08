@@ -67,11 +67,14 @@ export default {
             resolve()
         })
     },
-    updateFoodCount({ commit }, { isAdd, food }) {
+    updateFoodCount({ commit }, { isAdd, index, subIndex }) {
         if (isAdd) {
-            commit(INCREASE_FOODCOUNT, food)
+            commit(INCREASE_FOODCOUNT, { index, subIndex })
         } else {
-            commit(DECREASE_FOODCOUNT, food)
+            commit(DECREASE_FOODCOUNT, { index, subIndex })
         }
+        return new Promise((resolve) => {
+            resolve()
+        })
     }
 }
