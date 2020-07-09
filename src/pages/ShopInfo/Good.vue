@@ -39,8 +39,8 @@
                 class="food-item bottom-border-1px"
                 v-for="(food, subIndex) in good.foods"
                 :key="subIndex"
+                @click="showFood(food, index, subIndex)"
               >
-                <!-- @click="showFood(food)" -->
                 <div class="icon">
                   <img
                     width="57"
@@ -84,10 +84,12 @@
     <div v-else>
       Good
     </div>
-    <!-- <Food
-      :food="food"
-      ref="food"
-    /> -->
+    <FoodInfo
+      :food="curFood"
+      :index="curIndex"
+      :sub-index="curSubIndex"
+      ref="curFood"
+    />
   </div>
 </template>
 
@@ -96,15 +98,17 @@
   import BScroll from 'better-scroll'
   import {mapGetters} from 'vuex'
   import FoodCount from '../../components/FoodCount'
-  // import Food from '../../../components/Food/Food.vue'
+  import FoodInfo from '../../components/FoodInfo'
   // import ShopCart from '../../../components/ShopCart/ShopCart.vue'
-
 
   export default {
     data() {
       return {
         scrollY: 0,
         tops: [],
+        curFood: {},
+        curIndex: 0,
+        curSubIndex: 0
       }
     },
     mounted() {
@@ -160,15 +164,17 @@
         this.foodsScroll.scrollTo(0, -scrollY, 300)
       },
 
-      showFood (food) {
-        this.food = food
-        this.$refs.food.toggleShow()
+      showFood (food, index, subIndex) {
+        this.curFood = food
+        this.curIndex = index
+        this.curSubIndex = subIndex
+        this.$refs.curFood.toggleShow()
       }
     },
 
     components: {
-      FoodCount
-      // Food,
+      FoodCount,
+      FoodInfo
       // ShopCart
     }
   }
