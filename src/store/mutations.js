@@ -50,7 +50,6 @@ export default {
         }
     },
     [DECREASE_FOODCOUNT](state, { index, subIndex }) {
-        console.log(index, subIndex)
         if (state.shopInfo[state.id].goods[index].foods[subIndex].count) {
             state.shopInfo[state.id].goods[index].foods[subIndex].count--
         }
