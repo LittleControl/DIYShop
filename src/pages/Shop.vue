@@ -3,13 +3,14 @@
     <HeadTop title="商家店铺" />
     <form
       class="search_form"
-      action="#"
+      @submit.prevent="search"
     >
       <input
         type="search"
         name="search"
         placeholder="请输入商家或美食名称"
         class="search_input"
+        v-model="keyword"
       >
       <input
         type="submit"
@@ -17,18 +18,36 @@
         class="search_submit"
       >
     </form>
-    <ShopList />
+    <SearchResult v-if="!showReco" />
+    <ShopList v-show="showReco" />
   </div>
 </template>
 
 <script>
 import HeadTop from '../components/HeadTop'
 import ShopList from '../components/ShopList'
+import SearchResult from '../components/SearchResult'
 
 export default {
+  data() {
+    return {
+      keyword: '',
+      showReco: true
+    }
+  },
   components: {
     HeadTop,
-    ShopList
+    ShopList,
+    SearchResult
+  },
+  methods: {
+    search() {
+      const keyword = this.keyword.trim()
+      this.$store.dispatch('searchShop',keyword)
+      .then(() => {
+        this.showReco = false
+      })
+    }
   }
 }
 </script>

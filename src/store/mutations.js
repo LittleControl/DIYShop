@@ -9,7 +9,8 @@ import {
     SET_SHOPID,
     INCREASE_FOODCOUNT,
     DECREASE_FOODCOUNT,
-    CLEAR_CART
+    CLEAR_CART,
+    SEARCH_SHOP
 } from './mutation-types'
 
 export default {
@@ -61,5 +62,8 @@ export default {
             food.count = 0
         })
         state.cartFoods.splice(0)
+    },
+    [SEARCH_SHOP](state, searchResult) {
+        state.searchResult = searchResult
     }
 }
