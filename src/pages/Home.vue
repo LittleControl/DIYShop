@@ -29,7 +29,7 @@
             <div class="banner">
               <img
                 class="banner_item"
-                :src="banner.url"
+                v-lazy="banner.url"
                 alt="Banner1"
               >
             </div>

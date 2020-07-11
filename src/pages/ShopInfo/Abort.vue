@@ -56,7 +56,7 @@
               <img
                 width="120"
                 height="90"
-                :src="pic"
+                v-lazy="pic"
               >
             </li>
           </ul>

@@ -16,7 +16,7 @@
             <span class="text bottom-border-1px">
               <img
                 class="icon"
-                :src="good.icon"
+                v-lazy="good.icon"
                 v-if="good.icon"
               >
               {{ good.name }}
@@ -45,7 +45,7 @@
                   <img
                     width="57"
                     height="57"
-                    :src="food.icon"
+                    v-lazy="food.icon"
                   >
                 </div>
                 <div class="content">
