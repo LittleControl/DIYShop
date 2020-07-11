@@ -8,10 +8,9 @@ import {
     POST_SHOPINFO,
     SET_SHOPID,
     INCREASE_FOODCOUNT,
-    DECREASE_FOODCOUNT
+    DECREASE_FOODCOUNT,
+    CLEAR_CART
 } from './mutation-types'
-
-import Vue from 'vue'
 
 export default {
     [GET_ADDRESS](state, address) {
@@ -41,17 +40,26 @@ export default {
     [SET_SHOPID](state, id) {
         state.id = id
     },
-    [INCREASE_FOODCOUNT](state, { index, subIndex }) {
-        if (!state.shopInfo[state.id].goods[index].foods[subIndex].count) {
-            // state.shopInfo[state.id].goods[index].foods[subIndex].count = 1
-            Vue.set(state.shopInfo[state.id].goods[index].foods[subIndex], 'count', 1)
-        } else {
-            state.shopInfo[state.id].goods[index].foods[subIndex].count++
+    [INCREASE_FOODCOUNT](state, food) {
+        food.count++
+        if (food.count === 1) {
+            state.cartFoods.push(food)
         }
+        // console.log(state.shopInfo[state.id])
     },
-    [DECREASE_FOODCOUNT](state, { index, subIndex }) {
-        if (state.shopInfo[state.id].goods[index].foods[subIndex].count) {
-            state.shopInfo[state.id].goods[index].foods[subIndex].count--
+    [DECREASE_FOODCOUNT](state, food) {
+        if (food.count > 0) {
+            food.count--
+            if (food.count === 0) {
+                state.cartFoods.splice(state.cartFoods.indexOf(food), 1)
+            }
         }
+        // console.log(state.shopInfo[state.id])
+    },
+    [CLEAR_CART](state) {
+        state.cartFoods.forEach(food => {
+            food.count = 0
+        })
+        state.cartFoods.splice(0)
     }
 }

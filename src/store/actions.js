@@ -8,7 +8,8 @@ import {
     POST_SHOPINFO,
     SET_SHOPID,
     INCREASE_FOODCOUNT,
-    DECREASE_FOODCOUNT
+    DECREASE_FOODCOUNT,
+    CLEAR_CART
 } from './mutation-types'
 
 import {
@@ -57,6 +58,7 @@ export default {
     async getShopInfo({ commit, state }) {
         const info = await reqShopInfo(state.id)
         commit(POST_SHOPINFO, { info })
+        console.log(info)
         return new Promise((resolve) => {
             resolve()
         })
@@ -67,14 +69,17 @@ export default {
             resolve()
         })
     },
-    updateFoodCount({ commit }, { isAdd, index, subIndex }) {
+    updateFoodCount({ commit }, { isAdd, food }) {
         if (isAdd) {
-            commit(INCREASE_FOODCOUNT, { index, subIndex })
+            commit(INCREASE_FOODCOUNT, food)
         } else {
-            commit(DECREASE_FOODCOUNT, { index, subIndex })
+            commit(DECREASE_FOODCOUNT, food)
         }
         return new Promise((resolve) => {
             resolve()
         })
-    }
+    },
+    clearCart({ commit }) {
+        commit(CLEAR_CART)
+    },
 }
