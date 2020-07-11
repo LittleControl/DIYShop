@@ -116,7 +116,7 @@
                 >{{ item }}</span>
               </div>
               <div class="time">
-                {{ rating.rateTime | dateFormat }}
+                {{ rating.rateTime | time-format }}
               </div>
             </div>
           </li>
@@ -172,11 +172,6 @@
       },
       toggleOnlyShowText () {
         this.onlyShowText = !this.onlyShowText
-      }
-    },
-    filters: {
-      dateFormat(value) {
-        return new Date(value)
       }
     },
     components: {
