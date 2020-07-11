@@ -48,7 +48,7 @@ export default {
 <style scoped lang="stylus">
 @import '../common/mixins.styl';
 
-.star { // 2x图 3x图
+.star {
   float: left;
   font-size: 0;
 

@@ -34,10 +34,7 @@
         </div>
         <div class="cartcontrol-wrapper">
           <!-- <CartControl :food="food" /> -->
-          <FoodCount
-            :index="index"
-            :sub-index="subIndex"
-          />
+          <FoodCount :food="food" />
         </div>
       </div>
     </div>
@@ -60,18 +57,6 @@ import FoodCount from './FoodCount'
               return {}
           }
       },
-      index: {
-        type: Number,
-        default() {
-          return 0
-        }
-      },
-      subIndex: {
-        type: Number,
-        default() {
-          return 0
-        }
-      }
     },
 
     data () {

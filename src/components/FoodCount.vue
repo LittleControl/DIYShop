@@ -3,13 +3,13 @@
     <transition name="move">
       <div
         class="iconfont icon-jianshao"
-        v-if="count"
+        v-if="count > 0"
         @click.stop="updateFoodCount(false)"
       />
     </transition>
     <div
       class="cart-count"
-      v-if="count"
+      v-if="count > 0"
     >
       {{ count }}
     </div>
@@ -23,29 +23,23 @@
 <script>
 export default {
   props: {
-    index: {
-      type: Number,
-      default: function() {
-        return 0
+    food: {
+      type: Object,
+      default() {
+        return {}
       }
     },
-    subIndex: {
-      type: Number,
-      default: function() {
-        return 0
-      }
-    }
   },
   data() {
     return {
-      count: 0
+      count: this.food.count
     }
   },
   methods: {
     updateFoodCount(isAdd) {
       this.$store.dispatch(
         'updateFoodCount', 
-        {isAdd, index: this.index, subIndex: this.subIndex}
+        {isAdd, food: this.food}
       )
       .then(() => {
         if(isAdd) {
@@ -55,6 +49,11 @@ export default {
         }
       })
     }
+  },
+  computed: {
+    // count() {
+    //   return this.food.count
+    // }
   }
 }
 </script>
