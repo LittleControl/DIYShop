@@ -1,6 +1,6 @@
 import ajax from './ajax'
 const BASE_URL = '/api'
-const POST_URL = 'http://127.0.0.1:7001'
+const POST_URL = 'http://192.168.1.4:7001'
 
 export const reqAddress = () => ajax(BASE_URL + '/ip')
 export const reqBanners = () => ajax(BASE_URL + '/banners')
