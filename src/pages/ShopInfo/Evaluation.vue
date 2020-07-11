@@ -87,7 +87,7 @@
               <img
                 width="28"
                 height="28"
-                :src="rating.avatar"
+                v-lazy="rating.avatar"
               >
             </div>
             <div class="content">

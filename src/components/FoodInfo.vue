@@ -5,8 +5,7 @@
   >
     <div class="food-content">
       <div class="image-header">
-        <!-- <img v-lazy="food.image"> -->
-        <img :src="food.image">
+        <img v-lazy="food.image">
         <p class="foodpanel-desc">
           {{ food.info }}
         </p>
