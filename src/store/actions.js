@@ -9,7 +9,8 @@ import {
     SET_SHOPID,
     INCREASE_FOODCOUNT,
     DECREASE_FOODCOUNT,
-    CLEAR_CART
+    CLEAR_CART,
+    SEARCH_SHOP
 } from './mutation-types'
 
 import {
@@ -18,7 +19,8 @@ import {
     reqShopList,
     reqUserInfo,
     reqSignup,
-    reqShopInfo
+    reqShopInfo,
+    searchShop
 } from '../api/index'
 
 export default {
@@ -58,7 +60,7 @@ export default {
     async getShopInfo({ commit, state }) {
         const info = await reqShopInfo(state.id)
         commit(POST_SHOPINFO, { info })
-        console.log(info)
+        // console.log(info)
         return new Promise((resolve) => {
             resolve()
         })
@@ -82,4 +84,12 @@ export default {
     clearCart({ commit }) {
         commit(CLEAR_CART)
     },
+    async searchShop({ commit }, keyword) {
+        const searchResult = await searchShop(keyword)
+        // console.log(searchResult)
+        commit(SEARCH_SHOP, searchResult)
+        return new Promise((resolve) => {
+            resolve()
+        })
+    }
 }

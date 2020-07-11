@@ -10,5 +10,6 @@ export default {
     cartFoods: [],
     info: {},
     goods: [],
-    rating: []
+    rating: [],
+    searchResult: []
 }
