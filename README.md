@@ -40,9 +40,9 @@
 
 ## 项目截图
 
-![home](./screenshots/0.jpg)
-![Shop](./screenshots/1.jpg)
-![Order](./screenshots/2.jpg)
-![ShopInfo1](./screenshots/6.jpg)
-![ShopInfo2](./screenshots/7.jpg)
-![SHopInfo3](./screenshots/8.jpg)
+[<img src="./screenshots/0.jpg" width=300>](./screenshots/0.jpg)
+[<img src="./screenshots/1.jpg" width=300>](./screenshots/1.jpg)
+[<img src="./screenshots/2.jpg" width=300>](./screenshots/2.jpg)
+[<img src="./screenshots/6.jpg" width=300>](./screenshots/6.jpg)
+[<img src="./screenshots/7.jpg" width=300>](./screenshots/7.jpg)
+[<img src="./screenshots/8.jpg" width=300>](./screenshots/8.jpg)
